@@ -10,9 +10,9 @@ const rl = readline.createInterface({
 
 function pigLatin(word) {
 
-   
-  var translate = function(word) {
-    var array = word.split('');
+    
+    // var array = word.split('');
+    // console.log("array", array);
     var vowels = ['a', 'e', 'i', 'o', 'u'];
     var newWord = '';
     for (var y = 0; y < word.length - 1; y++) {
@@ -27,7 +27,7 @@ function pigLatin(word) {
           return newWord + "ay";
         }
       }
-    }
+    
   }
 }
   pigLatin("apple");
