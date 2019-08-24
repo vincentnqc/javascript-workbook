@@ -13,24 +13,42 @@ function pigLatin(word) {
     
     // var array = word.split('');
     // console.log("array", array);
-    var vowels = ['a', 'e', 'i', 'o', 'u'];
+    var resolve = word.toLowerCase().trim();
+    
+    var vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+    
     var newWord = '';
-    for (var y = 0; y < word.length - 1; y++) {
+    
+    for (var y = 0; y < resolve.length - 1; y++) {
+      
       for (var i = 0; i < vowels.length - 1; i++) {
-        if (word[y] === vowels[i]) {
-          for (var x = y; x < word.length; x++) {
-            newWord = newWord + word[x];
+
+        if (resolve[0] === vowels[i]) {
+
+          console.log(resolve);
+
+            return resolve + "yay";
+        }
+       
+        else if (resolve[y] === vowels[i]) {
+         
+          for (var x = y; x < resolve.length; x++) {
+           
+            newWord = newWord + resolve[x];
           }
+         
           for (var n = 0; n < y; n++) {
-            newWord = newWord + word[n];
+          
+            newWord = newWord + resolve[n];
           }
+         
           return newWord + "ay";
         }
       }
     
   }
 }
-  pigLatin("apple");
+  pigLatin("");
 
 function getPrompt() {
   rl.question('word ', (answer) => {
