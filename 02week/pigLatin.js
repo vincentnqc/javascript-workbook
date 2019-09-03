@@ -10,14 +10,49 @@ const rl = readline.createInterface({
 
 function pigLatin(word) {
 
-  // Your code here
+    
+    // var array = word.split('');
+    // console.log("array", array);
+    var resolve = word.toLowerCase().trim();
+    
+    var vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+    
+    var newWord = '';
+    
+    for (var y = 0; y < resolve.length - 1; y++) {
+      
+      for (var i = 0; i < vowels.length - 1; i++) {
 
+        if (resolve[0] === vowels[i]) {
+
+          console.log(resolve);
+
+            return resolve + "yay";
+        }
+       
+        else if (resolve[y] === vowels[i]) {
+         
+          for (var x = y; x < resolve.length; x++) {
+           
+            newWord = newWord + resolve[x];
+          }
+         
+          for (var n = 0; n < y; n++) {
+          
+            newWord = newWord + resolve[n];
+          }
+         
+          return newWord + "ay";
+        }
+      }
+    
+  }
 }
-
+  pigLatin("");
 
 function getPrompt() {
   rl.question('word ', (answer) => {
-    console.log( pigLatin(answer) );
+    console.log(pigLatin(answer));
     getPrompt();
   });
 }
