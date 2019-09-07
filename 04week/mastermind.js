@@ -59,7 +59,9 @@ function mastermind(guess) {
   var combined = guess+hint
 board.push(combined)
 if(board.length === 10){
-return 'You ran out of turns! The solution was '`${solution}`}
+  board = []
+  console.log( `You ran out of turns! The solution was ${solution}`)
+}
 else 'Guess Again'
 }
 
