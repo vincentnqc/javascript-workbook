@@ -29,10 +29,12 @@ function getRandomInt(min, max) {
 }
 
 function generateHint(guess) {
+  //using to split to split solution into an array of substrings
   let solutionArray = solution.split("")
   let guessArray = guess.split("")
   let correctLetterLocations = 0
   for(var i = 0; i <=3; i++){
+  // i less then 2
   if(solutionArray[i] === guessArray[i]){
   correctLetterLocations ++
   solutionArray[i] = null;
@@ -47,6 +49,7 @@ function generateHint(guess) {
   }
   }
   return `${correctLetters}-${correctLetterLocations}`
+  // if the solutionArray is equal to the guess Array then the letters are in the correct locations
 }
 
 function mastermind(guess) {
@@ -54,6 +57,7 @@ function mastermind(guess) {
   if (solution === guess){
     return "You guessed it!"
   }
+  // you won
   var hint = generateHint(guess);
 
   var combined = guess+hint
@@ -61,9 +65,11 @@ board.push(combined)
 if(board.length === 10){
   board = []
   console.log( `You ran out of turns! The solution was ${solution}`)
+  //if you use more than 10 guesses, you lose
 }
 else 'Guess Again'
 }
+//if you havent used 10 guesses then you can guess again
 
 
 function getPrompt() {
