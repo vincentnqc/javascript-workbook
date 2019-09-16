@@ -20,6 +20,8 @@ class CrewMember{
   enterShip(shipName){
     this.ship = shipName;
     shipName.crew.push(this);
+    
+  console.log(this)
   }
 }
 
