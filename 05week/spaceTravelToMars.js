@@ -9,6 +9,7 @@ let jobTypes = {
   programmer: 'Any Ship!'
 };
 
+// Build crewMember class
 
 class CrewMember{
   constructor(name, job, specialSkill){
@@ -17,6 +18,9 @@ class CrewMember{
       this.specialSkill = specialSkill;
       this.ship = null;
   }
+
+  // Allow crewMember to enter a ship
+
   enterShip(shipName){
     this.ship = shipName;
     shipName.crew.push(this);
@@ -25,6 +29,8 @@ class CrewMember{
   }
 }
 
+// Build class for ship
+
 class Ship{
   constructor(name, type, ability){
     this.name = name;
@@ -32,6 +38,9 @@ class Ship{
     this.ability = ability;
     this.crew = [];
   }
+
+// return mission statement
+
   missionStatement(){
     if(this.crew.length >= 1){
      return this.ability;
