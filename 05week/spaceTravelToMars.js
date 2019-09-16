@@ -9,7 +9,6 @@ let jobTypes = {
   programmer: 'Any Ship!'
 };
 
-// Your code here
 
 //tests
 if (typeof describe === 'function'){
