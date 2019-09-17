@@ -8,15 +8,30 @@ const rl = readline.createInterface({
 });
 
 
-function Checker() {
+function Checkers() {
   // Your code here
 }
 
-class Board {
-  constructor() {
-    this.grid = []
+class checkers {
+  constructor(symbol){
+    this.symbol = symbol;
   }
-  // method that creates an 8x8 array, filled with null values
+}
+
+class Board {
+  constructor(grid, checkers) {
+    this.grid = [];
+    this.redPiece = "R";
+    this.blackPiece = "B";
+    this.checkers = [];
+    // this.createCheckers(){
+    //   var whitePositions = [];
+    //   var blackPositions = [];
+
+      }
+    }   
+  
+
   createGrid() {
     // loop to create the 8 rows
     for (let row = 0; row < 8; row++) {
@@ -38,7 +53,7 @@ class Board {
         // if the location is "truthy" (contains a checker piece, in this case)
         if (this.grid[row][column]) {
           // push the symbol of the check in that location into the array
-          rowOfCheckers.push(this.grid[row][column].symbol);
+          rowOfCheckers.push(this.grid[row][column]);
         } else {
           // just push in a blank space
           rowOfCheckers.push(' ');
@@ -52,7 +67,16 @@ class Board {
     console.log(string);
   }
 
-  // Your code here
+  initializeGrid(){
+    for(let row1 = 0; row < 3; row1++){
+      for(let col1 = 0; col1 < 8; col1++){
+        if(row1 % 2 ===0 && col1 % 2 ===1){
+          this.grid[row1][col1] = this.redPiece;
+        }
+      }
+    }
+  }
+
 }
 
 class Game {
@@ -61,6 +85,7 @@ class Game {
   }
   start() {
     this.board.createGrid();
+    this.board.initializeGrid();
   }
 }
 
