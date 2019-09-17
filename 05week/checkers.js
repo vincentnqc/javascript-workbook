@@ -27,9 +27,9 @@ class Board {
     // this.createCheckers(){
     //   var whitePositions = [];
     //   var blackPositions = [];
-
+    
       }
-    }   
+     
   
 
   createGrid() {
@@ -59,6 +59,7 @@ class Board {
           rowOfCheckers.push(' ');
         }
       }
+    
       // join the rowOfCheckers array to a string, separated by a space
       string += rowOfCheckers.join(' ');
       // add a 'new line'
@@ -67,21 +68,49 @@ class Board {
     console.log(string);
   }
 
+
+  // Using posistions of odd or even spaces to put pieces on the board.
   initializeGrid(){
-    for(let row1 = 0; row < 3; row1++){
+    for(let row1 = 0; row1 < 3; row1++){
       for(let col1 = 0; col1 < 8; col1++){
-        if(row1 % 2 ===0 && col1 % 2 ===1){
+        if(row1 % 2 === 0 && col1 % 2 === 1){
           this.grid[row1][col1] = this.redPiece;
+          this.checkers.push(this.redPiece);
+        }
+        if(row1 % 2 === 1 && col1 % 2 === 0){
+          this.grid[row1][col1] = this.redPiece;
+          this.checkers.push(this.redPiece);
+        }
+      }
+    }
+    for(let row2 = 5; row2 < 8; row2++){
+      for(let col2 = 0; col2 < 8; col2++){
+        if(row2 % 2 == 0 & col2 % 2 == 1){
+          this.grid[row2][col2] = this.blackPiece;
+          this.checkers.push(this.blackPiece);
+        } if(row2 % 2 == 1 & col2 % 2 == 0){
+          this.grid[row2][col2] = this.blackPiece;
+          this.checkers.push(this.blackPiece);
         }
       }
     }
   }
-
 }
 
+
+// Using slipt to move pieces acroos the game board by making an array and having it displayed as a string. Also make the staring position eqaul to null to make pieces previous position disapear.
 class Game {
   constructor() {
     this.board = new Board;
+  }
+  moveChecker(whichPiece, toWhere) {
+    // this.board.grid[][];
+    let move = whichPiece.split("");
+    let where = toWhere.split("");
+    this.board.grid[where[0]][where[1]] = this.board.grid[move[0]][move[1]];
+    this.board.grid[move[0]][move[1]] = null;
+
+    console.log(this.board.grid[move[0]][move[1]]);
   }
   start() {
     this.board.createGrid();
