@@ -21,15 +21,11 @@ class checkers {
 class Board {
   constructor(grid, checkers) {
     this.grid = [];
-    this.redPiece = "R";
-    this.blackPiece = "B";
+    this.redPiece = "r";
+    this.blackPiece = "b";
     this.checkers = [];
-    // this.createCheckers(){
-    //   var whitePositions = [];
-    //   var blackPositions = [];
-    
-      }
-     
+  }
+
   
 
   createGrid() {
@@ -98,13 +94,12 @@ class Board {
 }
 
 
-// Using slipt to move pieces acroos the game board by making an array and having it displayed as a string. Also make the staring position eqaul to null to make pieces previous position disapear.
+// Using split to move pieces across the game board by making an array and having it displayed as a string. 
 class Game {
   constructor() {
     this.board = new Board;
   }
   moveChecker(whichPiece, toWhere) {
-    // this.board.grid[][];
     let move = whichPiece.split("");
     let where = toWhere.split("");
     this.board.grid[where[0]][where[1]] = this.board.grid[move[0]][move[1]];
@@ -112,6 +107,9 @@ class Game {
 
     console.log(this.board.grid[move[0]][move[1]]);
   }
+
+  // Also make the string position eqaul to null to make pieces previous position disapear.
+
   start() {
     this.board.createGrid();
     this.board.initializeGrid();
