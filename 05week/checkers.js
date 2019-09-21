@@ -9,8 +9,12 @@ const rl = readline.createInterface({
 
 
 function Checkers() {
-  // Your code here
+  
+
+  
 }
+
+
 
 class checkers {
   constructor(symbol){
@@ -25,6 +29,17 @@ class Board {
     this.blackPiece = "b";
     this.checkers = [];
   }
+
+// only be able to move piece if the ending column is one more or one less than the starting column
+
+    legalMove(whichPiece, toWhere){
+      let startCol = whichPiece.split("")
+      let endCol = toWhere.split("")
+      console.log(startCol, endCol)
+      if([startCol] + 1 === [endCol] || [startCol] -1 === [endCol])
+        return true;
+    }
+      
 
   
 
@@ -84,6 +99,7 @@ class Board {
         if(row2 % 2 == 0 & col2 % 2 == 1){
           this.grid[row2][col2] = this.blackPiece;
           this.checkers.push(this.blackPiece);
+
         } if(row2 % 2 == 1 & col2 % 2 == 0){
           this.grid[row2][col2] = this.blackPiece;
           this.checkers.push(this.blackPiece);
@@ -102,11 +118,28 @@ class Game {
   moveChecker(whichPiece, toWhere) {
     let move = whichPiece.split("");
     let where = toWhere.split("");
+    if(this.board.legalMove(whichPiece, toWhere) === true) {
+    this.killCheck(whichPiece, toWhere) === true 
     this.board.grid[where[0]][where[1]] = this.board.grid[move[0]][move[1]];
     this.board.grid[move[0]][move[1]] = null;
-
+  }
+     
     console.log(this.board.grid[move[0]][move[1]]);
   }
+
+// jumping checker's endng position is two less or two more than it's starting column posision
+
+  killCheck(whichPiece, toWhere) {
+    let move = whichPiece.split("");
+      let where = toWhere.split("");
+      console.log(startCol, endCol)
+        if([startCol] + 2 === [endCol] || [startCol] -2 === [endCol])
+          return true;
+        if(board.grid[move[0]-1][move[1]+1])
+        board.grid[move[0]-1][move[1]+1] = null;
+  }
+
+// checker getting jumped is checked if it's position is one les or one more than the jumping checker and equals null so it gets killed
 
   // Also make the string position eqaul to null to make pieces previous position disapear.
 
