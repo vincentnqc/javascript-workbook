@@ -33,10 +33,10 @@ class Board {
 // only be able to move piece if the ending column is one more or one less than the starting column
 
     legalMove(whichPiece, toWhere){
-      let startCol = whichPiece.split("")
-      let endCol = toWhere.split("")
-      console.log(startCol, endCol)
-      if([startCol] + 1 === [endCol] || [startCol] -1 === [endCol])
+      let start = whichPiece.split("")
+      let end = toWhere.split("")
+      console.log(parseInt(start[0]) + 1 == end[0] || parseInt(start[0]) -1 == end[0])
+      if(parseInt(start[0]) + 1 == end[0] || parseInt(start[0]) -1 == end[0])
         return true;
     }
       
@@ -115,28 +115,47 @@ class Game {
   constructor() {
     this.board = new Board;
   }
+
   moveChecker(whichPiece, toWhere) {
     let move = whichPiece.split("");
     let where = toWhere.split("");
     if(this.board.legalMove(whichPiece, toWhere) === true) {
-    this.killCheck(whichPiece, toWhere) === true 
+    this.killCheck(whichPiece, toWhere)
     this.board.grid[where[0]][where[1]] = this.board.grid[move[0]][move[1]];
     this.board.grid[move[0]][move[1]] = null;
   }
      
     console.log(this.board.grid[move[0]][move[1]]);
-  }
+}
 
 // jumping checker's endng position is two less or two more than it's starting column posision
 
   killCheck(whichPiece, toWhere) {
-    let move = whichPiece.split("");
-      let where = toWhere.split("");
-      console.log(startCol, endCol)
-        if([startCol] + 2 === [endCol] || [startCol] -2 === [endCol])
-          return true;
-        if(board.grid[move[0]-1][move[1]+1])
-        board.grid[move[0]-1][move[1]+1] = null;
+
+    let premove = whichPiece.split("");
+    let prewhere = toWhere.split("");
+
+    let move = parseInt(premove[0]);
+    let where = parseInt(prewhere[0]);
+    let move1 = parseInt(premove[1]);
+    let where1 = parseInt(prewhere[1]);
+    
+    console.log(move, move1, where, where1);
+    
+
+// do variable that captures red or black
+
+
+
+
+
+
+    if(this.board.grid[move +1][move1 -1] && move + 1 === where || move1 -2 === where1){
+      this.board.grid[move -1][move1 +1] = null;
+      this.board.checkers.length--;
+    
+       return true;
+    }
   }
 
 // checker getting jumped is checked if it's position is one les or one more than the jumping checker and equals null so it gets killed
