@@ -120,12 +120,12 @@ class Game {
     let move = whichPiece.split("");
     let where = toWhere.split("");
     if(this.board.legalMove(whichPiece, toWhere) === true) {
-    this.killCheck(whichPiece, toWhere)
     this.board.grid[where[0]][where[1]] = this.board.grid[move[0]][move[1]];
     this.board.grid[move[0]][move[1]] = null;
   }
      
     console.log(this.board.grid[move[0]][move[1]]);
+    this.killCheck(whichPiece, toWhere)
 }
 
 // jumping checker's endng position is two less or two more than it's starting column posision
@@ -141,18 +141,47 @@ class Game {
     let where1 = parseInt(prewhere[1]);
     
     console.log(move, move1, where, where1);
-    
+    console.log(this.board.grid[move -1][move1 +1])
 
 // do variable that captures red or black
 
 
-
-
-
-
-    if(this.board.grid[move +1][move1 -1] && move + 1 === where || move1 -2 === where1){
+    if(this.board.grid[move -1][move1 +1] && move -2 === where && move1 +2 === where1){
       this.board.grid[move -1][move1 +1] = null;
-      this.board.checkers.length--;
+      this.board.checkers.pop();
+      this.board.grid[prewhere[0]][prewhere[1]] = this.board.grid[premove[0]][premove[1]];
+      this.board.grid[premove[0]][premove[1]] = null;
+      console.log(this.board.checkers.length)
+    
+       return true;
+    }
+
+    if(this.board.grid[move +1][move1 -1] && move +2 === where && move1 -2 === where1){
+      this.board.grid[move +1][move1 -1] = null;
+      this.board.checkers.pop();
+      this.board.grid[prewhere[0]][prewhere[1]] = this.board.grid[premove[0]][premove[1]];
+      this.board.grid[premove[0]][premove[1]] = null;
+      console.log(this.board.checkers.length)
+    
+       return true;
+    }
+
+    if(this.board.grid[move -1][move1 -1] && move -2 === where && move1 +2 === where1){
+      this.board.grid[move -1][move1 -1] = null;
+      this.board.checkers.pop();
+      this.board.grid[prewhere[0]][prewhere[1]] = this.board.grid[premove[0]][premove[1]];
+      this.board.grid[premove[0]][premove[1]] = null;
+      console.log(this.board.checkers.length)
+    
+       return true;
+    }
+
+    if(this.board.grid[move +1][move1 +1] && move +2 === where && move1 +2 === where1){
+      this.board.grid[move +1][move1 +1] = null;
+      this.board.checkers.pop();
+      this.board.grid[prewhere[0]][prewhere[1]] = this.board.grid[premove[0]][premove[1]];
+      this.board.grid[premove[0]][premove[1]] = null;
+      console.log(this.board.checkers.length)
     
        return true;
     }
