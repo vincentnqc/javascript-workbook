@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 
 function Checkers() {
   
-
+// Why am I here?
   
 }
 
@@ -109,8 +109,8 @@ class Board {
   }
 }
 
-
 // Using split to move pieces across the game board by making an array and having it displayed as a string. 
+
 class Game {
   constructor() {
     this.board = new Board;
@@ -143,8 +143,9 @@ class Game {
     console.log(move, move1, where, where1);
     console.log(this.board.grid[move -1][move1 +1])
 
-// do variable that captures red or black
+// create if statements for if the checker doing the jumping is red or black and depnding on which direction it's moving.
 
+// checker getting jumped is checked if it's position is one les or one more than the jumping checker and equals null so it gets killed.
 
     if(this.board.grid[move -1][move1 +1] && move -2 === where && move1 +2 === where1){
       this.board.grid[move -1][move1 +1] = null;
@@ -187,7 +188,7 @@ class Game {
     }
   }
 
-// checker getting jumped is checked if it's position is one les or one more than the jumping checker and equals null so it gets killed
+
 
   // Also make the string position eqaul to null to make pieces previous position disapear.
 
