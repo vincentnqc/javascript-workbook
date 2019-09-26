@@ -66,6 +66,7 @@ class redTeammate {
 
 const listPeopleChoices = () => {
   const listElement = document.getElementById('people')
+  document.getElementById("people").innerHTML = null
   arrOfPeople.map(person => {
     const li = document.createElement("li")
     const button = document.createElement("button")
@@ -77,6 +78,25 @@ const listPeopleChoices = () => {
   })
 }
 
-const makePlayer = (id) => {
-  console.log(`li ${id} was clicked!`)
-}
+const makePlayer = id => {
+  console.log(`li ${id} was clicked!`);
+  var people = arrOfPeople.findIndex(person => person.id == id);
+  document.getElementById("players").innerHTML = null
+  const listElement = document.getElementById('players')
+  listOfPlayers.push(arrOfPeople[people]);
+  arrOfPeople.splice(people,1)
+  console.log(listOfPlayers)
+  listOfPlayers.map(player => {
+  const li = document.createElement("li");
+  const button = document.createElement("button");
+  button.innerHTML = "Choose Team";
+  // button.addEventListener("click", function() {
+  //   makePlayer(player.id);
+  // });
+  li.appendChild(button);
+  li.appendChild(
+    document.createTextNode(player.name + " - " + player.skillSet)
+  );
+  listElement.append(li);})
+  listPeopleChoices()
+};
