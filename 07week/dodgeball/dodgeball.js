@@ -64,6 +64,9 @@ class redTeammate {
   constructor(){}
 }
 
+
+
+
 const listPeopleChoices = () => {
   const listElement = document.getElementById('people')
   document.getElementById("people").innerHTML = null
@@ -88,13 +91,20 @@ const makePlayer = id => {
   console.log(listOfPlayers)
   listOfPlayers.map(player => {
   const li = document.createElement("li");
+  const buttonRed = document.createElement("button");
   const button = document.createElement("button");
+  buttonRed.innerHTML = "Red Team";
   button.innerHTML = "Blue Team";
-  // button.innerHTML = "Red Team";
-  button.addEventListener("click", function() {
-    blue_Team(player.id);
+  buttonRed.addEventListener("click", function() {
+    red_Team(player.id)
    
-  });
+  })
+  
+  button.addEventListener("click", function() {
+    blue_Team(player.id)
+   
+  })
+  li.appendChild(buttonRed);
   li.appendChild(button);
   li.appendChild(
     document.createTextNode(player.name + " - " + player.skillSet)
@@ -119,20 +129,51 @@ const blue_Team = id => {
   )
   getBlue.appendChild(li)
  })
- const playerElement = document.getElementById('players')
-document.getElementById('players').innerHTML = ''
- listOfPlayers.map(player => {
-  const li = document.createElement("li");
-  const button = document.createElement("button");
-  button.innerHTML = "Blue Team";
-  // button.innerHTML = "Red Team";
-  button.addEventListener("click", function() {
-    blue_Team(player.id);
-   
-  });
-  li.appendChild(button);
-  li.appendChild(
-    document.createTextNode(player.name + " - " + player.skillSet)
-  );
-  playerElement.append(li);})
+  listPlayer()
 }
+
+const red_Team = id => {
+  var i = listOfPlayers.findIndex(k => k.id === id);
+  redTeam.push(listOfPlayers[i])
+  listOfPlayers.splice(i,1)
+  console.log(listOfPlayers, "some string that catches")
+  document.getElementById("red").innerHTML = null
+  var getRed = document.getElementById("red")
+  redTeam.map(player => {
+   
+   const li = document.createElement("li")
+   console.log(player)
+   li.appendChild(
+    document.createTextNode(player.name + " - " + player.skillSet)
+   )
+   getRed.appendChild(li)
+  })
+   listPlayer()
+ }
+
+ const listPlayer = () => {
+  const playerElement = document.getElementById('players')
+  document.getElementById('players').innerHTML = ''
+   listOfPlayers.map(player => {
+    const li = document.createElement("li");
+    const button = document.createElement("button");
+    const buttonRed = document.createElement("button");
+    button.innerHTML = "Blue Team";
+    buttonRed.innerHTML = "Red Team";
+    button.addEventListener("click", function() {
+      blue_Team(player.id);
+      
+     
+    });
+
+    buttonRed.addEventListener("click", function() {
+      red_Team(player.id);
+      
+     
+    });
+    li.appendChild(buttonRed);
+    li.appendChild(button);
+    li.appendChild(
+      document.createTextNode(player.name + " - " + player.skillSet)
+    );
+    playerElement.append(li);})}
