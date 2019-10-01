@@ -63,6 +63,7 @@ class player {
     this.placeBorn = placeBorn;
   }
 }
+
 class blueTeammate extends player {
   constructor(id, name, age, skillSet, placeBorn) {
     super(id, name, age, skillSet, placeBorn);
@@ -70,9 +71,16 @@ class blueTeammate extends player {
     this.mascot = "Whales";
   }
 }
-class redTeammate {
-  constructor() {}
+
+class redTeammate extends player {
+  constructor(id, name, age, skillSet, placeBorn) {
+    super(id, name, age, skillSet, placeBorn);
+    this.color = "Red";
+    this.mascot = "Seals";
+  }
 }
+
+// Runs throught the array and a button is created that when clicked puts the person on to a list of players that displays their name and skillset
 
 const listPeopleChoices = () => {
   const listElement = document.getElementById("people");
@@ -92,6 +100,8 @@ const listPeopleChoices = () => {
   });
 };
 
+// Targeting a person and pushing them on to the list of players on the list an allows you to put these players on a team.
+
 const makePlayer = id => {
   console.log(`li ${id} was clicked!`);
   var people = arrOfPeople.findIndex(person => person.id == id);
@@ -109,38 +119,22 @@ const makePlayer = id => {
   arrOfPeople.splice(people, 1);
   console.log(garbagePeople);
   console.log(listOfPlayers);
-  listOfPlayers.map(player => {
-    const li = document.createElement("li");
-    const buttonRed = document.createElement("button");
-    const button = document.createElement("button");
-    buttonRed.innerHTML = "Red Team";
-    button.innerHTML = "Blue Team";
-    buttonRed.addEventListener("click", function() {
-      red_Team(player.id);
-    });
-    button.addEventListener("click", function() {
-      blue_Team(player.id);
-    });
-    li.appendChild(buttonRed);
-    li.appendChild(button);
-    li.appendChild(
-      document.createTextNode(player.name + " - " + player.skillSet)
-    );
-    listElement.append(li);
-  });
+  listPlayer();
   listPeopleChoices();
 };
+
+// Splicing from the list of players and pushing them on to a team
 
 const blue_Team = id => {
   var i = listOfPlayers.findIndex(k => k.id === id);
   blueTeam.push(listOfPlayers[i]);
   listOfPlayers.splice(i, 1);
-  console.log(listOfPlayers, "some string that catches");
   document.getElementById("blue").innerHTML = null;
-  var getBlue = document.getElementById("blue");
   listBlueTeam();
   listPlayer();
 };
+
+// Creates a list of players pushed to the blue team with a button that gives the option to remove the player. That player will be pushed back to the players list.
 
 const listBlueTeam = () => {
   document.getElementById("blue").innerHTML = null;
@@ -164,6 +158,9 @@ const listBlueTeam = () => {
   });
 };
 
+// Splicing from the list of players and pushing them on to a team
+
+
 const red_Team = id => {
   var i = listOfPlayers.findIndex(k => k.id === id);
   redTeam.push(listOfPlayers[i]);
@@ -174,6 +171,8 @@ const red_Team = id => {
   listPlayer();
   listRedTeam();
 };
+
+// Creates a list of players pushed to the red team with a button that gives the option to remove the player. That player will be pushed back to the players list.
 
 const listRedTeam = () => {
   document.getElementById("red").innerHTML = null;
@@ -196,6 +195,8 @@ const listRedTeam = () => {
     getRed.appendChild(li);
   });
 };
+
+// Displays arrays of people and players with buttons according to what team you want them on or if you want to remove them from a team.
 
 const listPlayer = () => {
   const playerElement = document.getElementById("players");
