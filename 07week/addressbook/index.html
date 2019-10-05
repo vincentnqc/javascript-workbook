@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="main.js">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+<h1>Contacts</h1>
+<table id="contacts-table">
+  <tr id="contacts-head">
+    <th>Please enter your first name, last name, and email.</th>
+  </tr>
+</table>
+
+<form id="contacts-form">
+  <div class="item text">
+    <label>First name:</label>
+    <div class="field"><input type="text" name="first_name" /></div>
+  </div>
+
+  <div class="item text">
+    <label>Last name:</label>
+    <div class="field"><input type="text" name="last_name" /></div>
+  </div>
+
+  <div class="item text">
+    <label>Email:</label>
+    <div class="field"><input type="text" name="email" /></div>
+
+  </div>
+  <div class="button-wrapper">
+    <div class="item button">
+      <div class="field"><input type="button" id="contacts-op-discard" value="Delete" /></div>
+    </div>
+
+    <div class="item button button-default">
+      <div class="field"><input type="submit" id="contacts-op-save" value="Save" /></div>
+    </div>
+
+  </div>
+
+  <input type="hidden" name="id_entry" value="0" />
+</form>
