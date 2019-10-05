@@ -16,10 +16,53 @@ const gitPosts = () => {
   })
 }
 
-
+let collection = []
 
 const display = () => {
 console.log(heros)
-document.getElementById("herolist").append(document.createTextNode(heros.results[0].characters.items[0].name))
+// document.getElementById("herolist").append(document.createTextNode(heros.results[0].characters.items[0].name))
+let heroSpot = document.getElementById("herolist")
+
+heros.results.map(results => {
+results.characters.items.map(hero => {
+  const li = document.createElement("li")
+  const button = document.createElement("button")
+  button.innerHTML = "Collect"
+  button.addEventListener('click', function(){
+    li.style.color = "blue"
+    collection.push(hero)
+    heroSpot.removeChild(li)
+    displayCollection()
+  })
+
+  li.append(document.createTextNode(hero.name))
+  li.append(button)
+  heroSpot.append(li)
+})
+})
+
+// heros.results[0].characters.items.map(hero => {
+//   heroSpot.append(document.createTextNode(hero.name))
+// })
+// heros.results[1].characters.items.map(hero => {
+//   heroSpot.append(document.createTextNode(hero.name))
+// })
 }
 
+const displayCollection = () => {
+  console.log(collection, "here")
+  let collectionSpot = document.getElementById("collectionlist")
+  collectionSpot.innerHTML = null
+  collection.map(hero => {
+  
+    
+      const li = document.createElement("li")
+     
+    
+      li.append(document.createTextNode(hero.name))
+      
+      collectionSpot.append(li)
+   
+    })
+   
+}
